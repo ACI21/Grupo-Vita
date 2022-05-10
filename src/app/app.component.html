@@ -1,3 +1,57 @@
-<div class="container">
-    <router-outlet></router-outlet>
-</div>
+<mat-toolbar class="mat-elevation-z8">
+  <button
+    mat-icon-button
+    *ngIf="sidenav.mode === 'over'"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+  </button>
+  <img
+      class="avatar2 "
+      src="../assets/img/logo.ico"
+    />GRUPO VITA
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <img
+      class="avatar mat-elevation-z8"
+      src="{{ user.photoURL }}"
+    />
+
+    <h4 class="name">{{ user.displayName }}</h4>
+    <p class="designation">{{ profession }}</p>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="">
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/profile">
+      <mat-icon>event_note</mat-icon>
+      <span>Calendar</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/profile">
+      <mat-icon>local_pharmacy</mat-icon>
+      <span>Doctors</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/profile">
+      <mat-icon>local_hotel</mat-icon>
+      <span>Patients</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="/logout">
+      <mat-icon>no_meeting_room</mat-icon>
+      <span>Log out</span>
+    </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

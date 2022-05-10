@@ -13,8 +13,8 @@ export class AuthFirebaseServiceService {
     try {
       return await this.auth.signInWithEmailAndPassword(email, password);
     } catch (error) {
-      alert('No se ha podido realizar esta operación');
-      console.log('No se ha podido realizar esta operación. Error: ' + error);
+      alert('This operation could not be performed');
+      console.log('This operation could not be performed. Error: ' + error);
       return null;
     }
   }
@@ -22,12 +22,12 @@ export class AuthFirebaseServiceService {
     try {
       return await this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
     } catch (error) {
-      alert('No se ha podido realizar esta operación con Google. Error: ' + error);
-      console.log('No se ha podido realizar esta operación con Google. Error: ' + error);
+      alert('This operation could not be performed with Google. Error: ' + error);
+      console.log('This operation could not be performed with Google. Error: ' + error);
       return null;
     }
   }
-  async registro(email: string, password: string) {
+  /*async registro(email: string, password: string) {
     try {
       return await this.auth.createUserWithEmailAndPassword(email, password);
     } catch (error) {
@@ -35,7 +35,7 @@ export class AuthFirebaseServiceService {
       console.log('No se ha podido realizar el registro de usuario. Error: ' + error);
       return null;
     }
-  }
+  }*/
   async logOut(){
     this.auth.signOut();
   }
@@ -50,7 +50,7 @@ export class AuthFirebaseServiceService {
           displayName: nombre
         })
       }else{
-        console.log('No hay usuario logueado');
+        console.log('User is not logued');
       }
     })
   }

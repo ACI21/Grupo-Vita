@@ -24,8 +24,8 @@ export const environment = {
   },
 };
 // Initialize Firebase
-const app = initializeApp(environment.firebaseConfig);
-const analytics = getAnalytics(app);
+//const app = initializeApp(environment.firebaseConfig);
+//const analytics = getAnalytics(app);
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

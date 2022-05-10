@@ -16,6 +16,14 @@ export class LoginComponent implements OnInit {
   constructor(private auth : AuthFirebaseServiceService, private router: Router) { }
 
   ngOnInit(): void {
+    this.logOut();
+    location.reload();
+  }
+
+  logOut(){
+    this.auth.logOut();
+    this.router.navigate(['login']);
+    location.reload();
   }
 
   logIn():void{

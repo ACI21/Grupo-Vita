@@ -3,6 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './model/log/login/login.component';
 import { LogoutComponent } from './model/log/logout/logout.component';
 import { DashboardComponent } from './model/primary/dashboard/dashboard.component';
+import { DoctorsDetailsComponent } from './model/primary/doctors-details/doctors-details.component';
+import { DoctorsComponent } from './model/primary/doctors/doctors.component';
+import { PatientsComponent } from './model/primary/patients/patients.component';
+import { ScheduleComponent } from './model/primary/schedule/schedule.component';
 
 const routes: Routes = [
   {
@@ -10,8 +14,24 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
+    path: 'doctors',
+    component: DoctorsComponent
+  },
+  {
+    path: 'patients',
+    component: PatientsComponent
+  },
+  {
+    path: 'schedule',
+    component: ScheduleComponent
+  },
+  {
+    path: 'doctors/:id',
+    component: DoctorsDetailsComponent
+  },
+  {
     //login
-    path:'login',
+    path: 'login',
     component: LoginComponent
   },
   {
