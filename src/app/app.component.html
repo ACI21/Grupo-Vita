@@ -15,12 +15,16 @@
 
 <mat-sidenav-container>
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
-    <img
-      class="avatar mat-elevation-z8"
-      src="{{ user.photoURL }}"
-    />
+    <div *ngIf="userPhoto">
+      <img class="avatar mat-elevation-z8" src="{{ userPhoto }}" />
+    </div>
+    <div *ngIf="!userPhoto">
+      <img class="avatar mat-elevation-z8" src="../assets/img/logo.ico" />
+    </div>
 
-    <h4 class="name">{{ user.displayName }}</h4>
+    <h4 class="name" *ngIf="userName">{{ userName }}</h4>
+    <h4 class="name" *ngIf="!userName">{{ userName2 }}</h4>
+
     <p class="designation">{{ profession }}</p>
 
     <mat-divider></mat-divider>

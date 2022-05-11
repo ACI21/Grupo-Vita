@@ -15,6 +15,10 @@ export class AppComponent {
   public user: any;
   public uid: string = "guess";
   public profession: string = "Doctor employee";
+  public userName: any;
+  public userName3: any[] | any;
+  public userName2: any;
+  public userPhoto: any;
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
@@ -45,9 +49,14 @@ export class AppComponent {
       if (res != null) {
         this.user = res;
         this.uid = res.uid;
+        this.userName = res.displayName;
+        this.userPhoto = res.photoURL
+        if (!res.displayName) {
+          this.userName3 = res.email?.split('@');
+          this.userName2 = this.userName3[0];
+        }
         this.trustRol()
       } else {
-
         this.uid = "guess";
       }
       if (this.uid === "guess") {

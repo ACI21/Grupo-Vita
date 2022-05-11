@@ -9,7 +9,6 @@ import { AuthFirebaseServiceService } from '../../../service/firebase/auth-fireb
 })
 export class LoginComponent implements OnInit {
 
-
   @ViewChild("email") email! : ElementRef;
   @ViewChild("password") password! : ElementRef;
 
@@ -26,19 +25,23 @@ export class LoginComponent implements OnInit {
     location.reload();
   }
 
-  logIn():void{
-    var email = this.email.nativeElement.value;
-    var contra = this.password.nativeElement.value;
-    this.auth.login(email, contra).then(res=> {
-      console.log(res);
-      this.router.navigate(['']);
-    });
+  logIn(email: string, pass: string):void{
+    email = email.trim();
+    if(email.length > 10 && pass.length >= 6){
+      this.auth.login(email, pass).then(res=> {
+        console.log(res);
+        this.router.navigate(['']);
+      });
+    }
+
   }
 
   logInGoogle():void{
     this.auth.loginGoogle().then(res=>{
       console.log(res);
-      this.router.navigate(['']);
+      if(res != null){
+        this.router.navigate(['']);
+      }
     });
   }
 }
