@@ -2,11 +2,26 @@ table {
   width: 100%;
 }
 
+.example-container {
+  height: auto;
+  overflow: auto;
+}
+
+.header{
+  text-align: center;
+}
 .mat-form-field {
   font-size: 14px;
   width: 100%;
+  text-align: center;
 }
 
 td, th {
-  width: 25%;
+  width: 5%;
+  text-align: center;
+}
+
+.pointer{
+  cursor: pointer;
+  margin-right: 10%;
 }

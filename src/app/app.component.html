@@ -29,19 +29,19 @@
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" routerLink="">
+    <button mat-button class="menu-button" [routerLink]="['']">
       <mat-icon>dashboard</mat-icon>
       <span>Dashboard</span>
     </button>
-    <button mat-button class="menu-button" routerLink="/profile">
+    <button mat-button class="menu-button" [routerLink]="['/schedule']">
       <mat-icon>event_note</mat-icon>
       <span>Calendar</span>
     </button>
-    <button mat-button class="menu-button" routerLink="/profile">
+    <button mat-button class="menu-button" [routerLink]="['/doctors']">
       <mat-icon>local_pharmacy</mat-icon>
       <span>Doctors</span>
     </button>
-    <button mat-button class="menu-button" routerLink="/profile">
+    <button mat-button class="menu-button" [routerLink]="['/patients']">
       <mat-icon>local_hotel</mat-icon>
       <span>Patients</span>
     </button>

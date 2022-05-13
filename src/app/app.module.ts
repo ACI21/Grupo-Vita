@@ -36,6 +36,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTableModule } from '@angular/material/table'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ShowPatientsComponent } from './model/popup/show-patients/show-patients.component';
+import { ShowDoctorsComponent } from './model/popup/show-doctors/show-doctors.component';
+
 
 @NgModule({
   declarations: [
@@ -51,6 +61,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     LoginComponent,
     LogoutComponent,
     DoctorsDetailsComponent,
+    ShowPatientsComponent,
+    ShowDoctorsComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +82,29 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatIconModule,
     MatDividerModule,
     MatGridListModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTooltipModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatDialogModule,
+  ],
+  exports:[
+    MatSidenavModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
+    MatGridListModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTooltipModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatDialogModule,
   ],
   providers: [AuthFirebaseServiceService],
   bootstrap: [AppComponent],
