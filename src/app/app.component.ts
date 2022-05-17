@@ -3,7 +3,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { AuthFirebaseServiceService } from './service/firebase/auth-firebase-service.service';
 import { Router } from '@angular/router';
-import { ref, getDatabase, get, child } from 'firebase/database';
+import { ref, getDatabase, get, child, push } from 'firebase/database';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +19,7 @@ export class AppComponent {
   public userName3: any[] | any;
   public userName2: any;
   public userPhoto: any;
+  public loginPageCheck: boolean = true;
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;

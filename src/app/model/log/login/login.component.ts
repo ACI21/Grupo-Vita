@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { getDatabase, remove, ref, push } from 'firebase/database';
 import { AuthFirebaseServiceService } from '../../../service/firebase/auth-firebase-service.service';
 
 @Component({
@@ -15,14 +16,22 @@ export class LoginComponent implements OnInit {
   constructor(private auth : AuthFirebaseServiceService, private router: Router) { }
 
   ngOnInit(): void {
-    this.logOut();
-    location.reload();
+    this.userLog();
+  }
+
+  userLog() {
+    this.auth.getInfoUsuarioLoggeado().subscribe((res) => {
+      if (res != null) {
+        this.logOut();
+        console.log('habia sesion iniciada')
+      } else {
+        this.logOut();console.log('no hay sesion iniciada')
+      }
+    });
   }
 
   logOut(){
     this.auth.logOut();
-    this.router.navigate(['login']);
-    location.reload();
   }
 
   logIn(email: string, pass: string):void{
@@ -30,10 +39,11 @@ export class LoginComponent implements OnInit {
     if(email.length > 10 && pass.length >= 6){
       this.auth.login(email, pass).then(res=> {
         console.log(res);
-        this.router.navigate(['']);
+        if(res != null){
+          this.router.navigate(['']);
+        }
       });
     }
-
   }
 
   logInGoogle():void{

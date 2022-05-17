@@ -1,11 +1,10 @@
 <div class="example-container mat-elevation-z8">
   <mat-toolbar>
-    <label style="text-align: left;">Today's Appointments</label>
-    <label>
-      <a [routerLink]="['/schedule']" style="text-align: right;">
-        Book Appointments
-      </a>
-    </label>
+    <mat-toolbar-row>
+      <span>Today's Appointments</span>
+      <span class="example-spacer"></span>
+      <span> <a [routerLink]="['/schedule']" style="text-decoration: none; text-decoration-color: white;">Book Appointments</a></span>
+    </mat-toolbar-row>
   </mat-toolbar>
   <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>

@@ -1,20 +1,13 @@
 <mat-toolbar class="mat-elevation-z8">
-  <button
-    mat-icon-button
-    *ngIf="sidenav.mode === 'over'"
-    (click)="sidenav.toggle()"
-  >
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
     <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
   </button>
-  <img
-      class="avatar2 "
-      src="../assets/img/logo.ico"
-    />GRUPO VITA
+  <img class="avatar2 " src="../assets/img/logo.ico" />GRUPO VITA
 </mat-toolbar>
 
 <mat-sidenav-container>
-  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8" *ngIf="uid != 'guess'">
     <div *ngIf="userPhoto">
       <img class="avatar mat-elevation-z8" src="{{ userPhoto }}" />
     </div>
