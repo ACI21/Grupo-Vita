@@ -11,7 +11,7 @@ import { getAnalytics } from "firebase/analytics";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 export const environment = {
-  production: false,
+  production: true,
   firebaseConfig: {
     apiKey: "AIzaSyCKrJzoiYBP4yCEw7QkE9Hs55zzo3Q6OAo",
     authDomain: "grupovita-20718.firebaseapp.com",
@@ -24,8 +24,8 @@ export const environment = {
   },
 };
 // Initialize Firebase
-//const app = initializeApp(environment.firebaseConfig);
-//const analytics = getAnalytics(app);
+const app = initializeApp(environment.firebaseConfig);
+const analytics = getAnalytics(app);
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

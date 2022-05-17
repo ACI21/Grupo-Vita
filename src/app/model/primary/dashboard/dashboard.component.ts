@@ -8,11 +8,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { ShowPatientsComponent } from '../../popup/show-patients/show-patients.component';
 import { ShowDoctorsComponent } from '../../popup/show-doctors/show-doctors.component';
+import { AppComponent } from '../../../app.component';
 
 export interface PeriodicElement {
   name: string;
   time: number;
-  doctorName: number;
+  doctorName: string;
   symptoms: string;
 }
 
@@ -24,16 +25,16 @@ export interface PeriodicElement {
 
 export class DashboardComponent implements OnInit {
   ELEMENT_DATA: PeriodicElement[] = [
-    {time: 1, name: 'Hydrogen', doctorName: 1.0079, symptoms: 'H'},
-    {time: 2, name: 'Helium', doctorName: 4.0026, symptoms: 'He'},
-    {time: 3, name: 'Lithium', doctorName: 6.941, symptoms: 'Li'},
-  {time: 4, name: 'Beryllium', doctorName: 9.0122, symptoms: 'Be'},
-  {time: 5, name: 'Boron', doctorName: 10.811, symptoms: 'B'},
-  {time: 6, name: 'Carbon', doctorName: 12.0107, symptoms: 'C'},
-  {time: 7, name: 'Nitrogen', doctorName: 14.0067, symptoms: 'N'},
-  {time: 8, name: 'Oxygen', doctorName: 15.9994, symptoms: 'O'},
-  {time: 9, name: 'Fluorine', doctorName: 18.9984, symptoms: 'F'},
-  {time: 10, name: 'Neon', doctorName: 20.1797, symptoms: 'Ne'},
+    {time: 1, name: 'Hydrogen', doctorName: 'Alvaro', symptoms: 'Hydrogen'},
+    {time: 2, name: 'Helium', doctorName: 'Juan', symptoms: 'Helium'},
+    {time: 3, name: 'Lithium', doctorName: 'Lucia', symptoms: 'Lithium'},
+    {time: 4, name: 'Beryllium', doctorName: 'Alvaro', symptoms: 'Beryllium'},
+    {time: 5, name: 'Boron', doctorName: 'Juan', symptoms: 'Much work'},
+    {time: 6, name: 'Carbon', doctorName: 'Lucia', symptoms: 'something'},
+    {time: 7, name: 'Nitrogen', doctorName: 'Alvaro', symptoms: 'something'},
+    {time: 8, name: 'Oxygen', doctorName: 'Juan', symptoms: 'something'},
+    {time: 9, name: 'Fluorine', doctorName: 'Lucia', symptoms: 'something'},
+    {time: 10, name: 'Neon', doctorName: 'Alvaro', symptoms: 'something'},
   ];
 
   public user: any;
@@ -46,11 +47,12 @@ export class DashboardComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private service: AuthFirebaseServiceService, private route: Router, private dialog: MatDialog)
+  constructor(private service: AuthFirebaseServiceService, private route: Router, private dialog: MatDialog,
+    private sidebar: AppComponent)
   {  }
 
   ngOnInit(): void {
-    this.userLog()
+    this.userLog();
   }
 
   ngAfterViewInit() {

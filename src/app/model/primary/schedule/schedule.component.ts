@@ -10,6 +10,8 @@ export class ScheduleComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
+
 
 }

@@ -21,13 +21,15 @@ import { AddDoctorsComponent } from './model/popup/add-doctors/add-doctors.compo
 import { AddPatientsComponent } from './model/popup/add-patients/add-patients.component';
 import { EditDoctorsComponent } from './model/popup/edit-doctors/edit-doctors.component';
 import { EditPatientsComponent } from './model/popup/edit-patients/edit-patients.component';
+import { ShowPatientsComponent } from './model/popup/show-patients/show-patients.component';
+import { ShowDoctorsComponent } from './model/popup/show-doctors/show-doctors.component';
 // Package Primary
 import { DashboardComponent } from './model/primary/dashboard/dashboard.component';
 import { DoctorsComponent } from './model/primary/doctors/doctors.component';
 import { PatientsComponent } from './model/primary/patients/patients.component';
 import { ScheduleComponent } from './model/primary/schedule/schedule.component';
 import { DoctorsDetailsComponent } from './model/primary/doctors-details/doctors-details.component';
-// Materialge
+// Material
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -43,9 +45,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ShowPatientsComponent } from './model/popup/show-patients/show-patients.component';
-import { ShowDoctorsComponent } from './model/popup/show-doctors/show-doctors.component';
-
 
 @NgModule({
   declarations: [

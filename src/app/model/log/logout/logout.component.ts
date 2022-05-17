@@ -13,10 +13,6 @@ export class LogoutComponent implements OnInit {
   constructor(private service : AuthFirebaseServiceService, private router : Router) { }
 
   ngOnInit(): void {
-    this.logOut();
-  }
-
-  logOut(){
     this.service.logOut();
     this.router.navigate(['login']);
   }

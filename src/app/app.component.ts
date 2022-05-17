@@ -63,6 +63,7 @@ export class AppComponent {
       if (this.uid === "guess") {
         this.route.navigate(['login']);
       }
+      console.log('uid: ' + this.uid)
     });
   }
 

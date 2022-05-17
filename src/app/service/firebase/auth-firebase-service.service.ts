@@ -20,7 +20,9 @@ export class AuthFirebaseServiceService {
   }
   async loginGoogle() {
     try {
-      return await this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+      return await this.auth.signInWithPopup(
+        new firebase.auth.GoogleAuthProvider()
+        );
     } catch (error) {
       alert('This operation could not be performed with Google. Error: ' + error);
       console.log('This operation could not be performed with Google. Error: ' + error);

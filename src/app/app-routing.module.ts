@@ -7,6 +7,7 @@ import { DoctorsDetailsComponent } from './model/primary/doctors-details/doctors
 import { DoctorsComponent } from './model/primary/doctors/doctors.component';
 import { PatientsComponent } from './model/primary/patients/patients.component';
 import { ScheduleComponent } from './model/primary/schedule/schedule.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
     path: 'logout',
     component: LogoutComponent
   },
+  {
+    path: 'sidebar',
+    component: AppComponent
+  }
 ];
 
 @NgModule({
