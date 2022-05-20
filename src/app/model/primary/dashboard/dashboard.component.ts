@@ -42,17 +42,19 @@ export class DashboardComponent implements OnInit {
   public profession: string = "Doctor employee";
   public displayedColumns: string[] = ['time', 'name', 'doctorName', 'symptoms', 'action'];
   public dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+
   public clickedRows = new Set<PeriodicElement>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private service: AuthFirebaseServiceService, private route: Router, private dialog: MatDialog,
-    private sidebar: AppComponent)
+  constructor(private service: AuthFirebaseServiceService, private route: Router, private dialog: MatDialog)
   {  }
 
   ngOnInit(): void {
     this.userLog();
+    console.log(this.ELEMENT_DATA);
+    console.log(this.dataSource);
   }
 
   ngAfterViewInit() {

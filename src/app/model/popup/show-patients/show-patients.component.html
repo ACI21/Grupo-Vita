@@ -1,5 +1,6 @@
-<h1 mat-dialog-title>Dialog with elements</h1>
+<h1 mat-dialog-title>Patient Record</h1>
 <div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="warn">Delete</button>
+  <button mat-button [mat-dialog-close]="true" color="primary" cdkFocusInitial>Edit</button>
 </div>

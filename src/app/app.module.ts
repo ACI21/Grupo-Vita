@@ -2,6 +2,8 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Firebase
 import { provideFirebaseApp } from '@angular/fire/app';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -30,8 +32,6 @@ import { PatientsComponent } from './model/primary/patients/patients.component';
 import { ScheduleComponent } from './model/primary/schedule/schedule.component';
 import { DoctorsDetailsComponent } from './model/primary/doctors-details/doctors-details.component';
 // Material
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -45,6 +45,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+
+
+//Calendar
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 
 @NgModule({
   declarations: [
@@ -88,22 +95,12 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
-  ],
-  exports:[
-    MatSidenavModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDividerModule,
-    MatGridListModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatTooltipModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatDialogModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [AuthFirebaseServiceService],
   bootstrap: [AppComponent],
