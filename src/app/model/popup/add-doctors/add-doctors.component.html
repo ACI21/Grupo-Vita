@@ -1,1 +1,89 @@
-<p>add-doctors works!</p>
+<h1 mat-dialog-title>Doctor Form</h1>
+<div mat-dialog-content>
+  <!--Name-->
+  <mat-form-field appearance="fill">
+    <mat-label>Doctor's Name</mat-label>
+    <input matInput placeholder="Placeholder" [formControl]="name" required>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    <mat-icon matSuffix>edit</mat-icon>
+  </mat-form-field>
+  <br>
+  <!--Surname-->
+  <mat-form-field appearance="fill">
+    <mat-label>Doctor's Surname</mat-label>
+    <input matInput placeholder="Placeholder" [formControl]="surname" required>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    <mat-icon matSuffix>edit</mat-icon>
+  </mat-form-field>
+  <br>
+  <!--Gender-->
+  <mat-form-field appearance="fill">
+    <mat-label>Select Gender</mat-label>
+    <mat-select [formControl]="gender" required>
+      <mat-option value="Male">Male</mat-option>
+      <mat-option value="Female">Female</mat-option>
+      <mat-option value="Other">Other</mat-option>
+    </mat-select>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+  <br>
+  <!--Department-->
+  <mat-form-field appearance="fill">
+    <mat-label>Department</mat-label>
+    <mat-select [formControl]="department" required>
+      <mat-option value="Physiotherapy">Physiotherapy</mat-option>
+      <mat-option value="Chiropody">Chiropody</mat-option>
+      <mat-option value="Psicology">Psicology</mat-option>
+    </mat-select>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+  <br>
+  <!--Experience-->
+  <mat-form-field appearance="fill">
+    <mat-label>Experience</mat-label>
+    <textarea matInput placeholder="Harvard..." [formControl]="experience" required></textarea>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+  <br>
+  <!--Designation-->
+  <mat-form-field appearance="fill">
+    <mat-label>Designation</mat-label>
+    <textarea matInput placeholder="Harvard..." [formControl]="designation" required></textarea>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+  <br>
+  <!--Education-->
+  <mat-form-field appearance="fill">
+    <mat-label>Education</mat-label>
+    <textarea matInput placeholder="Harvard..." [formControl]="education" required></textarea>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+  <br>
+  <!--Mobile-->
+  <mat-form-field appearance="fill">
+    <mat-label>Doctor phone number</mat-label>
+    <input matInput placeholder="123456789" [formControl]="mobile" required>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    <mat-icon matSuffix>phone</mat-icon>
+  </mat-form-field>
+  <br>
+  <!--DNI-->
+  <mat-form-field appearance="fill">
+    <mat-label>Doctor DNI</mat-label>
+    <input matInput placeholder="12345678A" [formControl]="dni" required>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    <mat-icon matSuffix>fingerprint</mat-icon>
+  </mat-form-field>
+  <br>
+  <!--Email-->
+  <mat-form-field appearance="fill">
+    <mat-label>Doctor email</mat-label>
+    <input matInput placeholder="patient@gmail.com" [formControl]="email" required>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    <mat-icon matSuffix>alternate_email</mat-icon>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="warn" >Cancel</button>
+  <button mat-button [mat-dialog-close]="true" color="primary" (click)="pushDoctor()" cdkFocusInitial>Add</button>
+</div>

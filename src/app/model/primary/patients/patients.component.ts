@@ -1,25 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthFirebaseServiceService } from 'src/app/service/firebase/auth-firebase-service.service';
-import { getDatabase, ref, child, get } from "firebase/database";
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatDialog } from '@angular/material/dialog';
-import { ShowPatientsComponent } from '../../popup/show-patients/show-patients.component';
-import { AddPatientsComponent } from '../../popup/add-patients/add-patients.component';
+import { Component, OnInit, ViewChild, Inject } from "@angular/core";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
+import { Router } from "@angular/router";
+import { ref, getDatabase, get, child } from "firebase/database";
+import { PatientRecord } from "src/app/interface/PatientRecord";
+import { AuthFirebaseServiceService } from "src/app/service/firebase/auth-firebase-service.service";
+import { AddPatientsComponent } from "../../popup/add-patients/add-patients.component";
 
-export interface PatientHistory {
-  id: number;
-  name: string;
-  surname: string;
-  gender: string;
-  bloodGroup: string;
-  symptoms: string;
-  mobile: string;
-  email: string;
-  dni: string;
+export interface ShowUID {
+  uid: string;
+  animal: string;
 }
+
 
 @Component({
   selector: 'app-patients',
@@ -28,16 +22,19 @@ export interface PatientHistory {
 })
 export class PatientsComponent implements OnInit {
 
-  ELEMENT_DATA: PatientHistory[] = [{ id: 0, name: 'null', surname: 'null', gender: 'null', bloodGroup: 'null', symptoms: 'null', mobile: 'null', email: 'null', dni: 'null' }];
+  public ELEMENT_DATA: PatientRecord[] = [{ uid: 'null', name: 'null', surname: 'null', gender: 'null', bloodGroup: 'null',
+  symptoms: 'null', mobile: 'null', email: 'null', dni: 'null', medicine: 'null', address: 'null' }];
   public user: any;
+  public show: boolean = false;
   public uid: string = "guess";
+  public uid2: string = "patient";
+  public animal: string = "patient";
   public profession: string = "Doctor employee";
-  public displayedColumns: string[] = ['id', 'name', 'surname', 'gender', 'bloodGroup', 'symptoms', 'mobile', 'email', 'dni'];
+  public displayedColumns: string[] = ['uid','name', 'surname', 'gender', 'bloodGroup', 'symptoms', 'mobile', 'email', 'dni'];
   public dataSource: any;
-  public clickedRows = new Set<PatientHistory>();
+  public clickedRows = new Set<PatientRecord>();
   private size: number = 0;
-  private arraySize: Array<number>[] = []
-  //this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -47,7 +44,7 @@ export class PatientsComponent implements OnInit {
     this.userLog();
   }
 
-  ngAfterViewInit() {
+  refreshPaginator() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -86,7 +83,7 @@ export class PatientsComponent implements OnInit {
 
   checkSize() {
     const dbRef = ref(getDatabase());
-    get(child(dbRef, `patients/`)).then((snapshot) => {
+    get(child(dbRef, `Users/`)).then((snapshot) => {
       if (snapshot.exists()) {
         this.ELEMENT_DATA.pop();
         this.size = snapshot.size
@@ -102,26 +99,31 @@ export class PatientsComponent implements OnInit {
 
   getPatients() {
     const dbRef = ref(getDatabase());
-    console.log(this.size);var array2: Array<any> = [];
+    var array2: Array<any> = [];
     for (let index = 0; index < this.size; index++) {
-      get(child(dbRef, `patients/${index}/`)).then((snapshot) => {
+      get(child(dbRef, `Users/`)).then((snapshot) => {
         var array: Array<any> = [];
 
         if (snapshot.exists()) {
           array = this.json2array(snapshot.val());
 
-          let name: string = array[0].name;
-          let surname: string = array[0].surname;
-          let gender: string = array[0].gender;
-          let blood: string = array[0].blood;
-          let symptoms: string = array[0].symptoms;
-          let mobile: string = array[0].mobile;
-          let email: string = array[0].email;
-          let dni: string = array[0].dni;
-          array2[index] = {id: index, name: name, surname: surname,  gender: gender, bloodGroup: blood,
-            symptoms: symptoms, mobile: mobile, email: email, dni: dni};
-          //console.log(array2);
+          let uid: string = array[index].uid;
+          let name: string = array[index].name;
+          let surname: string = array[index].surname;
+          let gender: string = array[index].gender;
+          let blood: string = array[index].blood;
+          let symptoms: string = array[index].symptoms;
+          let mobile: string = array[index].mobile;
+          let email: string = array[index].email;
+          let dni: string = array[index].dni;
+          let medicine: string = array[index].medicine;
+          let address: string = array[index].address;
+
+          array2[index] = {uid: uid, name: name, surname: surname,  gender: gender, bloodGroup: blood,
+            symptoms: symptoms, mobile: mobile, email: email, dni: dni, medicine: medicine, address: address};
+            console.log(array2);
           this.dataSource = new MatTableDataSource(array2);
+          this.refreshPaginator();
         }
       }).catch((error: any) => {
         console.error(error);
@@ -147,7 +149,30 @@ export class PatientsComponent implements OnInit {
     this.dialog.open(AddPatientsComponent);
   }
 
-  showPatient() {
-    this.dialog.open(ShowPatientsComponent);
+  showPatient(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: {name: this.uid2, animal: this.animal},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
+    });
+  }
+}
+
+@Component({
+  selector: 'show-patients',
+  templateUrl: 'show-patients.html',
+})
+export class DialogOverviewExampleDialog {
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: ShowUID,
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

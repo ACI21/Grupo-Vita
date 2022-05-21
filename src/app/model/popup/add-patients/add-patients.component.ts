@@ -44,11 +44,38 @@ export class AddPatientsComponent implements OnInit {
 
   checkID() {
     const dbRef = ref(getDatabase());
+    var result: any;
+    get(child(dbRef, `count/`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log('firebase: ' )
+        console.log(snapshot.val())
+        result = this.json2array(snapshot.val());
+        this.id = result[0].idCount;
+      }else{
+        this.checkSize();
+      }
+      console.log();
+    }).catch((error: any) => {
+      console.error(error);
+    });
+  };
+
+  createID(){
+    const dbRef = getDatabase();
+    push(ref(dbRef, `count/`), {
+      idCount: this.id,
+    });
+  }
+
+  checkSize() {
+    const dbRef = ref(getDatabase());
     get(child(dbRef, `patients/`)).then((snapshot) => {
       if (snapshot.exists()) {
         this.id = snapshot.size
+        this.createID();
+      }else{
+        this.createID();
       }
-      console.log(this.id);
     }).catch((error: any) => {
       console.error(error);
     });
@@ -57,6 +84,7 @@ export class AddPatientsComponent implements OnInit {
   addFirebasePatient() {
     const db = getDatabase();
     push(ref(db, `patients/${this.id}/`), {
+      id: this.id,
       name: this.name.value,
       surname: this.surname.value,
       gender: this.gender.value,
@@ -67,5 +95,14 @@ export class AddPatientsComponent implements OnInit {
       dni: this.dni.value
     });
     location.reload();
+  }
+
+  json2array(json: any){
+    var result: any[] = [];
+    var keys = Object.keys(json);
+    keys.forEach(function(key){
+    result.push(json[key]);
+    });
+    return result;
   }
 }

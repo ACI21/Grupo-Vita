@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-show-patients',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./show-patients.component.scss']
 })
 export class ShowPatientsComponent implements OnInit {
-
-  constructor() { }
+  constructor() {  }
 
   ngOnInit(): void {
+  }
+
+  OnInit(): void {
   }
 
 }

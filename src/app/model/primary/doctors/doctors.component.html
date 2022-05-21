@@ -1,1 +1,91 @@
-<p>doctors works!</p>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span>Doctors List</span>
+    <span class="example-spacer"></span>
+    <button mat-flat-button color="primary" (click)="addDoctor()" style="display: table-cell; width: auto;">
+      <mat-icon>add</mat-icon> Add new doctor
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="example-action-buttons">
+  <button mat-button (click)="accordion.openAll()">Expand All</button>
+  <button mat-button (click)="accordion.closeAll()">Collapse All</button>
+</div>
+<mat-accordion class="example-headers-align" multi>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <b>Physiotherapy</b>
+      </mat-panel-title>
+      <mat-panel-description>
+        Doctors avalibles
+        <mat-icon>medical_services</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div >
+      <mat-card class="example-card" *ngFor="let doctors of dataSource1">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ doctors.name + ' ' + doctors.surname }}</mat-card-title>
+        <mat-card-subtitle>{{ doctors.designation }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions align="end">
+        <button mat-button color="warn">Delete</button>
+        <button mat-button [mat-dialog-close]="true" color="primary">Edit</button>
+      </mat-card-actions>
+    </mat-card>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <b>Chiropody</b>
+      </mat-panel-title>
+      <mat-panel-description>
+        Doctors avalibles
+        <mat-icon>medical_services</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div *ngFor="let doctors of dataSource2">
+      <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ doctors.name + ' ' + doctors.surname }}</mat-card-title>
+        <mat-card-subtitle>{{ doctors.designation }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions align="end">
+        <button mat-button color="warn">Delete</button>
+        <button mat-button [mat-dialog-close]="true" color="primary">Edit</button>
+      </mat-card-actions>
+    </mat-card>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <b>Psicology</b>
+      </mat-panel-title>
+      <mat-panel-description>
+        Doctors avalibles
+        <mat-icon>medical_services</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div *ngFor="let doctors of dataSource3">
+      <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ doctors.name + ' ' + doctors.surname }}</mat-card-title>
+        <mat-card-subtitle>{{ doctors.designation }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions align="end">
+        <button mat-button color="warn">Delete</button>
+        <button mat-button [mat-dialog-close]="true" color="primary">Edit</button>
+      </mat-card-actions>
+    </mat-card>
+    </div>
+  </mat-expansion-panel>
+
+</mat-accordion>

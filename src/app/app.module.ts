@@ -46,11 +46,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import  {MatCardModule } from '@angular/material/card';
 
-
-//Calendar
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 
 @NgModule({
@@ -96,11 +95,10 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     MatSortModule,
     MatDialogModule,
     MatSelectModule,
-    BrowserAnimationsModule,
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
+    MatExpansionModule,
+    MatCheckboxModule,
+    MatCardModule,
+
   ],
   providers: [AuthFirebaseServiceService],
   bootstrap: [AppComponent],
