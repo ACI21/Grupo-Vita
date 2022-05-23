@@ -108,7 +108,7 @@ import { DeleteDateComponent } from './model/popup/delete-date/delete-date.compo
     MatCardModule,
     MatBadgeModule,
     MatDatepickerModule,
-    
+
   ],
   providers: [AuthFirebaseServiceService],
   bootstrap: [AppComponent],
