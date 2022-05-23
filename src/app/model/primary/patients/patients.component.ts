@@ -30,7 +30,7 @@ export class PatientsComponent implements OnInit {
   public uid2: string = "patient";
   public animal: string = "patient";
   public profession: string = "Doctor employee";
-  public displayedColumns: string[] = ['uid','name', 'surname', 'gender', 'bloodGroup', 'symptoms', 'mobile', 'email', 'dni'];
+  public displayedColumns: string[] = ['name', 'surname', 'gender', 'bloodGroup', 'symptoms', 'mobile', 'email', 'dni'];
   public dataSource: any;
   public clickedRows = new Set<PatientRecord>();
   private size: number = 0;
@@ -54,7 +54,7 @@ export class PatientsComponent implements OnInit {
       if (res != null) {
         this.user = res;
         this.uid = res.uid;
-        this.trustRol();
+        //this.trustRol();
         this.checkSize();
       } else {
         this.uid = "guess";

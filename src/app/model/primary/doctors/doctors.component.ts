@@ -2,9 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
 import { Router } from '@angular/router';
-import { ref, getDatabase, get, child } from 'firebase/database';
+import { ref, getDatabase, get, child, remove } from 'firebase/database';
 import { AuthFirebaseServiceService } from 'src/app/service/firebase/auth-firebase-service.service';
 import { AddDoctorsComponent } from '../../popup/add-doctors/add-doctors.component';
+import { DeleteDateComponent } from '../../popup/delete-date/delete-date.component';
 
 @Component({
   selector: 'app-doctors',
@@ -19,6 +20,8 @@ export class DoctorsComponent implements OnInit {
   public dataSource1: Array<any> = [];
   public dataSource2: Array<any> = [];
   public dataSource3: Array<any> = [];
+  public dataSource4: Array<any> = [];
+  public dataSource5: Array<any> = [];
   public size: number = 0;
   constructor(private service: AuthFirebaseServiceService, private route: Router, private dialog: MatDialog) { }
 
@@ -31,7 +34,7 @@ export class DoctorsComponent implements OnInit {
       if (res != null) {
         this.user = res;
         this.uid = res.uid;
-        this.trustRol();
+        //this.trustRol();
         this.checkSize();
       } else {
         this.uid = "guess";
@@ -79,8 +82,10 @@ export class DoctorsComponent implements OnInit {
     const dbRef = ref(getDatabase());
     var array2: Array<any> = [];
     let count1: number = this.dataSource1.length;
-    let count2: number = this.dataSource1.length;
-    let count3: number = this.dataSource1.length;
+    let count2: number = this.dataSource2.length;
+    let count3: number = this.dataSource3.length;
+    let count4: number = this.dataSource4.length;
+    let count5: number = this.dataSource5.length;
     for (let index = 0; index < this.size; index++) {
       get(child(dbRef, `doctors/`)).then((snapshot) => {
         var array: Array<any> = [];
@@ -120,6 +125,16 @@ export class DoctorsComponent implements OnInit {
               this.dataSource3[count3] = array2[index];
               count3++;
               break;
+
+            case 'Chiropractor':
+              this.dataSource4[count4] = array2[index];
+              count4++;
+              break;
+
+            case 'General Practitioner':
+              this.dataSource5[count5] = array2[index];
+              count5++;
+              break;
           }
         }
       }).catch((error: any) => {
@@ -139,6 +154,17 @@ export class DoctorsComponent implements OnInit {
 
   addDoctor() {
     this.dialog.open(AddDoctorsComponent);
+  }
+
+  deleteDoctor(id: string){
+    const dialogRef = this.dialog.open(DeleteDateComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        const db = getDatabase();
+        remove(ref(db, `doctors/${id}`));
+        this.checkSize();
+      }
+    });
   }
 
 }

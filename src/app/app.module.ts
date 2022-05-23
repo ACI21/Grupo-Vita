@@ -49,6 +49,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import  {MatCardModule } from '@angular/material/card';
+import {MatBadgeModule} from '@angular/material/badge';
+import { AddDateComponent } from './model/popup/add-date/add-date.component';
+import { EditDateComponent } from './model/popup/edit-date/edit-date.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { DeleteDateComponent } from './model/popup/delete-date/delete-date.component';
 
 
 
@@ -68,6 +73,9 @@ import  {MatCardModule } from '@angular/material/card';
     DoctorsDetailsComponent,
     ShowPatientsComponent,
     ShowDoctorsComponent,
+    AddDateComponent,
+    EditDateComponent,
+    DeleteDateComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,7 +106,9 @@ import  {MatCardModule } from '@angular/material/card';
     MatExpansionModule,
     MatCheckboxModule,
     MatCardModule,
-
+    MatBadgeModule,
+    MatDatepickerModule,
+    
   ],
   providers: [AuthFirebaseServiceService],
   bootstrap: [AppComponent],

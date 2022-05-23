@@ -14,12 +14,14 @@ export class AppComponent {
   title = 'Grupo-Vita';
   public user: any;
   public uid: string = "guess";
-  public profession: string = "Doctor employee";
+  public profession: string = 'Not registered';
   public userName: any;
   public userName3: any[] | any;
   public userName2: any;
   public userPhoto: any;
   public loginPageCheck: boolean = true;
+  public hidden = false;
+  public appointmentsTotal: number = 0;
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
@@ -51,12 +53,14 @@ export class AppComponent {
         this.user = res;
         this.uid = res.uid;
         this.userName = res.displayName;
-        this.userPhoto = res.photoURL
+        this.userPhoto = res.photoURL;
+        this.trustRol();
+        this.checkSize();
         if (!res.displayName) {
           this.userName3 = res.email?.split('@');
           this.userName2 = this.userName3[0];
         }
-        this.trustRol()
+
       } else {
         this.uid = "guess";
       }
@@ -65,21 +69,30 @@ export class AppComponent {
       }
       console.log('uid: ' + this.uid)
     });
+    console.log(this.profession)
   }
 
   trustRol() {
-    const dbRef = ref(getDatabase());
-      get(child(dbRef, `Rol/Administrative`)).then((snapshot) => {
-        if (snapshot.exists()) {
-          let value = snapshot.val()
-          if(value == this.uid){
-            this.profession = 'Administrative'
-          }
-        } else {
-          this.profession = 'Doctor employee'
-        }
-      }).catch((error) => {
-        console.error(error);
-      });
+
+    if(this.uid === 'TvV5DRvaAbObOSFKxyv9Z746Zcz1'){
+        this.profession = 'Administrative'
+      }
+    else {
+      this.profession = 'Doctor employee'
+    }
   }
+
+  checkSize() {
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `citas/`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        this.appointmentsTotal = snapshot.size;
+      }
+      if (this.appointmentsTotal === 0) {
+        this.hidden = true;
+      }
+    }).catch((error: any) => {
+      console.error(error);
+    });
+  };
 }

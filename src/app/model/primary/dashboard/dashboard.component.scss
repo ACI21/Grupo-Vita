@@ -1,5 +1,6 @@
 table {
   width: 100%;
+  text-align: center;
 }
 
 .example-spacer {
@@ -9,11 +10,13 @@ table {
 .example-container {
   height: 296px;
   overflow: auto;
+  text-align: center;
 }
 
 .header{
   text-align: center;
 }
+
 .mat-form-field {
   font-size: 14px;
   width: 100%;
@@ -28,4 +31,14 @@ td, th {
 .pointer{
   cursor: pointer;
   margin-right: 10%;
+}
+
+.example-card {
+  width: 60%;
+  text-align: center;
+}
+
+.example-header-image {
+  background-image: url('https://i.pinimg.com/736x/67/5a/51/675a5177fcbc67ee2532fef77a8e52a8.jpg');
+  background-size: cover;
 }

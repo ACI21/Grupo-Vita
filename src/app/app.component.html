@@ -12,7 +12,7 @@
       <img class="avatar mat-elevation-z8" src="{{ userPhoto }}" />
     </div>
     <div *ngIf="!userPhoto">
-      <img class="avatar mat-elevation-z8" src="../assets/img/logo.ico" />
+      <img class="avatar mat-elevation-z8" src="../assets/img/logo.ico"/>
     </div>
 
     <h4 class="name" *ngIf="userName">{{ userName }}</h4>
@@ -27,7 +27,7 @@
       <span>Dashboard</span>
     </button>
     <button mat-button class="menu-button" [routerLink]="['/schedule']">
-      <mat-icon>event_note</mat-icon>
+      <mat-icon matBadge="{{ appointmentsTotal }}" matBadgePosition="after" [matBadgeHidden]="hidden" matBadgeColor="warn">event_note</mat-icon>
       <span>Calendar</span>
     </button>
     <button mat-button class="menu-button" [routerLink]="['/doctors']">

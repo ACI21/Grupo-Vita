@@ -1,0 +1,33 @@
+<h1 mat-dialog-title>Doctor Form</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" disabled>
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field><br>
+  <!--Department-->
+  <mat-form-field appearance="fill">
+    <mat-label>Department</mat-label>
+    <mat-select required>
+      <mat-option value="Physiotherapy">Physiotherapy</mat-option>
+      <mat-option value="Chiropody">Chiropody</mat-option>
+      <mat-option value="Psicology">Psicology</mat-option>
+      <mat-option value="Chiropractor">Chiropractor</mat-option>
+      <mat-option value="General Practitioner">General Practitioner</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <!--Experience-->
+  <mat-form-field appearance="fill">
+    <mat-label>Experience</mat-label>
+    <textarea matInput placeholder="Harvard..." required></textarea>
+  </mat-form-field>
+  <br>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="warn" >Cancel</button>
+  <button mat-button [mat-dialog-close]="true" color="primary" cdkFocusInitial>Add</button>
+</div>
+
