@@ -13,14 +13,14 @@ import { getAnalytics } from "firebase/analytics";
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: "AIzaSyCKrJzoiYBP4yCEw7QkE9Hs55zzo3Q6OAo",
-    authDomain: "grupovita-20718.firebaseapp.com",
-    databaseURL: "https://grupovita-20718-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "grupovita-20718",
-    storageBucket: "grupovita-20718.appspot.com",
-    messagingSenderId: "1064394827395",
-    appId: "1:1064394827395:web:f18d0b81e1c65890faddb6",
-    measurementId: "G-9VY0FJ20RQ"
+    apiKey: "AIzaSyBNlMMiCSH4F5UXjqwJBuBh2Ctg5r5XQog",
+    authDomain: "studysync-a6a22.firebaseapp.com",
+    databaseURL: "https://studysync-a6a22-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "studysync-a6a22",
+    storageBucket: "studysync-a6a22.appspot.com",
+    messagingSenderId: "234746284018",
+    appId: "1:234746284018:web:ee150c3e45647369730d6b",
+    measurementId: "G-TR41WV1H3W"
   },
 };
 // Initialize Firebase
