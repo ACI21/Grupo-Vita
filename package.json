@@ -1,6 +1,15 @@
 {
+<<<<<<< Updated upstream
   "name": "study-sync",
   "version": "0.0.0",
+=======
+  "name": "StudySync",
+  "version": "0.0.0",
+  "author": {
+    "email": "aljusca@gmail.com",
+    "name": "CIA"
+  },
+>>>>>>> Stashed changes
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
